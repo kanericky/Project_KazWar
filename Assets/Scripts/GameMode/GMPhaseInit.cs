@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Deck;
+using Managers;
 
-public class GMPhaseInit : GMPhaseBase
+namespace GameMode
 {
-    public override void Init()
+    public class GMPhaseInit : GMPhaseBase
     {
-        base.Init();
-    }
+        public override void Init()
+        {
+            base.Init();
+            
+            LevelManager.Instance.InitReference();
+            
+        }
 
 
-    public override void Update()
-    {
-        base.Update();
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+        }
     }
 }
 

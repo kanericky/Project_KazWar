@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
+using Card;
+using Deck;
+using GameMode;
 using TMPro;
 using UnityEngine;
 
 namespace Managers
 {
+    [RequireComponent(typeof(GameModeManager))]
     public class LevelManager : MonoBehaviour
     {
-
-        public static LevelManager instance;
-    
-        [Header("Runtime")]
-        [SerializeField] private LevelState levelState = LevelState.NotSet;
+        
+        public static LevelManager Instance;
 
         [Header("Gameplay Components")]
         [SerializeField] private DeckBase playerDeck;
@@ -23,14 +24,22 @@ namespace Managers
 
         private void Awake()
         {
-            instance = this;
+            Instance = this;
         }
 
         private void Start()
         {
-            levelState = LevelState.LevelInitializing;
+            GameModeManager.Instance.InitGameMode();
+        }
+
+        public void InitReference()
+        {
+            // Get Reference
             playerDeck = FindObjectOfType<DeckBase>();
             playerDiceSlotPool = FindObjectOfType<DiceSlotPool>();
+            
+            // Change the state machine phase
+            GameModeManager.Instance.ChangeGMPhase(GMPhaseType.PlayerTurn);
         }
 
         public void PlayerTurnFinish()
@@ -50,6 +59,9 @@ namespace Managers
                 List<CardBase> playerCards = playerDeck.GetAllCardsInDeck();
                 DiceSlot currentSlot = playerDiceSlotPool.GetAllDiceSlots()[i];
                 DiceBase currentDice = currentSlot.GetDiceInSlot();
+
+                if (currentDice == null) return; 
+                
                 int currentDiceNum = currentDice.GetCurrentDiceNum();
 
                 foreach (var card in playerCards)
@@ -77,14 +89,5 @@ namespace Managers
         {
             GameManager.Instance.LoadLevel(GameManager.DevLevelName);
         }
-    }
-
-    public enum LevelState
-    {
-        NotSet,
-        LevelInitializing,
-        PlayerTurn,
-        EnemyTurn,
-        CombatSummary,
     }
 }

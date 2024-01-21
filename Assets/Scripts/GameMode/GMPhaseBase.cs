@@ -1,16 +1,14 @@
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GMPhaseBase
+namespace GameMode
 {
-    public virtual void Init() { }
+    public class GMPhaseBase
+    {
+        public virtual void Init() { }
 
-    public virtual void Update() { }
+        public virtual void OnUpdate() { }
 
-    public virtual void Exit() { }
+        public virtual void Exit() { }
     
     
     
+    }
 }

@@ -10,12 +10,13 @@ namespace UI
         private Dictionary<string, UIBase> _uiComponentPool;
 
         public static string UIComponentPath = "UI/";
-        public static string UIMainMenuPrefabName = "Main Menu";
+        public static string UIMainMenuPrefabName = "Main Menu HUD";
+        public static string UIBattlePlayerTurnPrefabName = "Battle Player Turn HUD";
 
         protected override void Awake()
         {
             base.Awake();
-
+            
             _uiCanvas = FindObjectOfType<Canvas>().transform;
             _uiComponentPool = new Dictionary<string, UIBase>();
         }
@@ -24,11 +25,11 @@ namespace UI
         public UIBase ShowUI<T>(string uiComponentName) where T : UIBase
         {
             UIBase uiComponentToShow = FindUIComponentInPool(uiComponentName);
-        
+            _uiCanvas = FindObjectOfType<Canvas>().transform;
+
             if (uiComponentToShow == null)
             {
                 GameObject spawnedObj = Instantiate(Resources.Load(UIComponentPath + uiComponentName), _uiCanvas) as GameObject;
-            
                 if (spawnedObj != null)
                 {
                     spawnedObj.name = uiComponentName;
@@ -36,10 +37,8 @@ namespace UI
                     _uiComponentPool.Add(uiComponentName, uiComponentToShow);
                 }
             }
-            else
-            {
-                uiComponentToShow.Show();
-            }
+            
+            uiComponentToShow.Show();
 
             return uiComponentToShow;
         }
@@ -62,7 +61,7 @@ namespace UI
             UIBase uiComponentToShow = FindUIComponentInPool(uiComponentName);
 
             if (uiComponentToShow == null)
-            {
+            {   
                 Debug.LogError($"[Close UI] Cannot find {uiComponentName} in spawned UI pool, please check the name provided or corresponding logic");
                 return;
             }

@@ -1,36 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Framework;
 using UI;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+namespace Managers
 {
-    // Dev names
-    public const string MainMenuLevelName = "Gym_MainMenu";
-    public const string DevLevelName = "Gym_DevScene";
-
-    private void Start()
+    [RequireComponent(typeof(UIManager))]
+    public class GameManager : Singleton<GameManager>
     {
-        UIManager.Instance.ShowUI<UIMainMenu>(UIManager.UIMainMenuPrefabName);
-    }
+        // Dev names
+        public const string MainMenuLevelName = "Gym_MainMenu";
+        public const string DevLevelName = "Gym_DevScene";
 
-    public void QuitGame()
-    {
-        UIManager.Instance.CloseAllUI();
-        Application.Quit();
-    }
+        private void Start()
+        {
+            UIManager.Instance.ShowUI<UIMainMenu>(UIManager.UIMainMenuPrefabName);
+        }
 
-    public void LoadLevel(int levelIndex)
-    {
-        SceneManager.LoadScene(levelIndex);
-    }
+        public void QuitGame()
+        {
+            UIManager.Instance.CloseAllUI();
+            Application.Quit();
+        }
+
+        public void LoadLevel(int levelIndex)
+        {
+            UIManager.Instance.CloseAllUI();
+            SceneManager.LoadScene(levelIndex);
+        }
     
-    public void LoadLevel(string levelName)
-    {
-        SceneManager.LoadScene(levelName);
+        public void LoadLevel(string levelName)
+        {
+            UIManager.Instance.CloseAllUI();
+            SceneManager.LoadScene(levelName);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,6 +16,7 @@ namespace UI
         private void Awake()
         {
             Register(StartButtonName).OnClick += OnStartButtonClicked;
+            Register(OptionButtonName).OnClick += OnOptionButtonClicked;
             Register(QuitButtonName).OnClick += OnQuitButtonClicked;
             Register(DevButtonName).OnClick += OnDevSceneButtonClicked;
         }
@@ -31,7 +33,13 @@ namespace UI
 
         private void OnDevSceneButtonClicked(GameObject gameObject, PointerEventData pData)
         {
+            UIManager.Instance.CloseAllUI();
             GameManager.Instance.LoadLevel(GameManager.DevLevelName);
+        }
+
+        private void OnOptionButtonClicked(GameObject gameObject, PointerEventData pData)
+        {
+            
         }
 
         private void OnDestroy()
