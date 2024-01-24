@@ -25,13 +25,13 @@ namespace Ability
 
                 case AbilityTargetType.AllAllies:
                     DeckBase cardOwnerDeck = ownerCard.GetOwnerDeck();
-                    List<CardBase> allCardsInDeck = cardOwnerDeck.GetAllCardsInDeck();
+                    List<Transform> allCardsInDeck = cardOwnerDeck.GetAllCardsInDeck();
 
                     foreach (var card in allCardsInDeck)
                     {
                         if (card != ownerCard)
                         {
-                            eligibleTargetCards.Add(card);
+                            eligibleTargetCards.Add(card.GetComponent<CardBase>());
                         }
                     }
                     break;

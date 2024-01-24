@@ -46,14 +46,9 @@ namespace Card
 
         public virtual void SetupCardData(CardData newCardData, DeckBase ownerDeck)
         {
-            // Init Component Reference
-            InitReference();
         }
 
-        protected virtual void InitReference()
-        {
-            AbilityHandler = GetComponent<AbilityHandler>();
-        }
+        protected virtual void InitReference(){}
 
         protected virtual void InitCardDisplay() { }
 
@@ -124,15 +119,16 @@ namespace Card
             return ownerCardDeck;
         }
 
+        public void SetOwnerDeck(DeckBase ownerDeck)
+        {
+            ownerCardDeck = ownerDeck;
+        }
+
         public bool GetCardIsBuffed()
         {
             return isBuffed;
         }
 
-        //TODO: Delete after finishing debug
-        private void OnMouseDown()
-        {
-            DamageCard(1);
-        }
+        
     }
 }

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3903421773463148052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2350809637473800221}
+  - component: {fileID: 6435045322246634079}
+  - component: {fileID: 680935498611816955}
+  m_Layer: 0
+  m_Name: Shop Player Cards Deck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2350809637473800221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903421773463148052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6435045322246634079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903421773463148052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684c04d9a8ff4b849d00a652bb26d699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityToHandle:
+    abilityDescription: 
+    abilityConditionType: 0
+    abilityTargetType: 0
+    abilityActionBase:
+      abilityActionType: 0
+      buffData:
+        healthBuffValue: 0
+        damageBuffValue: 0
+      damageData:
+        damageValue: 0
+  ownerCard: {fileID: 0}
+--- !u!114 &680935498611816955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903421773463148052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9928d4a375491e85f0ed7b3572e417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardHealth: 0
+  cardDamage: 0
+  cardActivatedNum: 
+  ownerCardDeck: {fileID: 0}
+  healthText: {fileID: 0}
+  damageText: {fileID: 0}
+  activatedDiceNumText: {fileID: 0}
+  isBuffed: 0

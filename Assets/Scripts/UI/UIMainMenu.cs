@@ -8,17 +8,17 @@ namespace UI
     public class UIMainMenu : UIBase
     {
 
-        private const string StartButtonName = "Start Button";
-        private const string OptionButtonName = "Option Button";
-        private const string QuitButtonName = "Quit Button";
-        private const string DevButtonName = "Dev Scene Button";
+        private readonly string _startButtonName = "Start Button";
+        private readonly string _optionButtonName = "Option Button";
+        private readonly string _quitButtonName = "Quit Button";
+        private readonly string _devButtonName = "Dev Scene Button";
         
         private void Awake()
         {
-            Register(StartButtonName).OnClick += OnStartButtonClicked;
-            Register(OptionButtonName).OnClick += OnOptionButtonClicked;
-            Register(QuitButtonName).OnClick += OnQuitButtonClicked;
-            Register(DevButtonName).OnClick += OnDevSceneButtonClicked;
+            Register(_startButtonName).OnClick += OnStartButtonClicked;
+            Register(_optionButtonName).OnClick += OnOptionButtonClicked;
+            Register(_quitButtonName).OnClick += OnQuitButtonClicked;
+            Register(_devButtonName).OnClick += OnDevSceneButtonClicked;
         }
 
         private void OnStartButtonClicked(GameObject gameObject, PointerEventData pData)
@@ -42,11 +42,11 @@ namespace UI
             
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            Register(StartButtonName).OnClick -= OnStartButtonClicked;
-            Register(QuitButtonName).OnClick -= OnQuitButtonClicked;
-            Register(DevButtonName).OnClick -= OnDevSceneButtonClicked;
+            Register(_startButtonName).OnClick -= OnStartButtonClicked;
+            Register(_quitButtonName).OnClick -= OnQuitButtonClicked;
+            Register(_devButtonName).OnClick -= OnDevSceneButtonClicked;
         }
     }
 }

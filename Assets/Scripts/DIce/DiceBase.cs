@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Framework;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DiceBase : MonoBehaviour
+public class DiceBase : MonoBehaviour, IDraggable
 {
     [Header("Dice Data")] 
     [SerializeField] private int diceFaceAmount = 6;
@@ -51,13 +52,13 @@ public class DiceBase : MonoBehaviour
         diceAmountText.text = currentNumber.ToString();
     }
     
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _offset = transform.position - MousePos;
     }
 
-    private void OnMouseDrag()
+    public void OnMouseDrag()
     {
         if (Camera.main == null) return;
         Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -65,12 +66,12 @@ public class DiceBase : MonoBehaviour
         transform.position = (Vector2) (MousePos + _offset);
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
         CheckAndPlace();
     }
 
-    private void CheckAndPlace()
+    public void CheckAndPlace()
     {
         int layerMask = ~(1 << LayerMask.NameToLayer("Draggable"));
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask);

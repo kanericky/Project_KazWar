@@ -4,10 +4,15 @@ using UnityEngine;
 [Serializable]
 public class AbilityBase
 {
-    [SerializeField] private string abilityDescription;
-    [SerializeField] private AbilityConditionType abilityConditionType;
-    [SerializeField] private AbilityTargetType abilityTargetType;
-    [SerializeField] private AbilityActionBase abilityActionBase;
+    [SerializeField] protected string abilityDescription;
+    [SerializeField] protected AbilityConditionType abilityConditionType;
+    [SerializeField] protected AbilityTargetType abilityTargetType;
+    [SerializeField] protected AbilityActionBase abilityActionBase;
+
+    public string GetAbilityDescription()
+    {
+        return abilityDescription;
+    }
 
     public AbilityConditionType GetAbilityConditionType()
     {

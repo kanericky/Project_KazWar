@@ -15,6 +15,12 @@ namespace UI
             Transform uiComponent = transform.Find(uiComponentName);
             return UIEventTrigger.Get(uiComponent.gameObject);
         }
+
+        public T BindUIComponent<T>(ref T uiComponent, string uiComponentName)
+        {
+            uiComponent = transform.Find(uiComponentName).GetComponent<T>();
+            return uiComponent;
+        }
     
         public virtual void Show()
         {

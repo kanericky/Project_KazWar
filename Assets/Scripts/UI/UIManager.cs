@@ -12,6 +12,7 @@ namespace UI
         public static string UIComponentPath = "UI/";
         public static string UIMainMenuPrefabName = "Main Menu HUD";
         public static string UIBattlePlayerTurnPrefabName = "Battle Player Turn HUD";
+        public static string UIShopPrefabName = "Shop HUD";
 
         protected override void Awake()
         {

@@ -4,6 +4,7 @@ using Card;
 using Deck;
 using GameMode;
 using TMPro;
+using UI;
 using UnityEngine;
 
 namespace Managers
@@ -17,7 +18,6 @@ namespace Managers
         [Header("Gameplay Components")]
         [SerializeField] private DeckBase playerDeck;
         [SerializeField] private DiceSlotPool playerDiceSlotPool;
-
 
         [Header("UI Display")] 
         [SerializeField] private TMP_Text debugUIText;
@@ -56,7 +56,7 @@ namespace Managers
             for (int i = 0; i < diceSlotNum; i++)
             {
                 int currentDamage = 0;
-                List<CardBase> playerCards = playerDeck.GetAllCardsInDeck();
+                List<Transform> playerCards = playerDeck.GetAllCardsInDeck();
                 DiceSlot currentSlot = playerDiceSlotPool.GetAllDiceSlots()[i];
                 DiceBase currentDice = currentSlot.GetDiceInSlot();
 
@@ -64,8 +64,9 @@ namespace Managers
                 
                 int currentDiceNum = currentDice.GetCurrentDiceNum();
 
-                foreach (var card in playerCards)
+                foreach (var cardTransform in playerCards)
                 {
+                    CardBase card = cardTransform.GetComponent<CardBase>();
                     if (card.CheckCanBeActivated(currentDiceNum))
                     {
                         card.ActivateCard();
@@ -82,7 +83,13 @@ namespace Managers
 
         public void UpdateDebugUI(int totalDamageThisTurn)
         {
-            debugUIText.text = "Total damage: " + totalDamageThisTurn;
+            UIBattlePlayerTurn battlePlayerTurnUI = (UIBattlePlayerTurn)
+                UIManager.Instance.FindUIComponentInPool(UIManager.UIBattlePlayerTurnPrefabName);
+
+            if (battlePlayerTurnUI == null) return;
+
+            string text = "Total Damage: " + totalDamageThisTurn;
+            battlePlayerTurnUI.UpdateDebugDamageUIText(text);
         }
 
         public void ReloadLevel()

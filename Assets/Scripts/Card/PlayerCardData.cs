@@ -8,5 +8,6 @@ namespace Card
     public class PlayerCardData : CardData
     {
         public List<PlayerAbility> playerAbilities;
+        public int cardPrice; 
     }
 }

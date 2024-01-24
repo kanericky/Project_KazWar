@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - DiceSlot
-  - Draggable
+  - PlayerSquadArea
+  - ShopArea
   layers:
   - Default
   - TransparentFX

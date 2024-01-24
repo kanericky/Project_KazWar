@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using Ability;
 using Deck;
+using TMPro;
 using UnityEngine;
 
 namespace Card
 {
     public class PlayerCard : CardBase
     {
+        [Header("UI Display")]
+        [SerializeField] private TMP_Text abilityDescription;
+
         [SerializeField] private PlayerCardData playerCardData;
         [SerializeField] private List<PlayerAbility> cardAbilities;
-
+        
         protected override void InitReference()
         {
             AbilityHandler = GetComponent<PlayerAbilityHandler>();
@@ -56,7 +60,8 @@ namespace Card
 
             healthText.text = playerCardData.health.ToString();
             damageText.text = playerCardData.damage.ToString();
-
+            abilityDescription.text = playerCardData.playerAbilities[0].GetAbilityDescription();
+            
             string activatedDiceNum = "";
         
             foreach (var diceNum in cardActivatedNum)
@@ -66,5 +71,13 @@ namespace Card
         
             activatedDiceNumText.text = activatedDiceNum;
         }
+        
+        //TODO: Delete after finishing debug
+        private void OnMouseDown()
+        {
+            DamageCard(1);
+        }
+                
+
     }
 }
